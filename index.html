@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://ts2.tc.mm.bing.net/th/id/ODF.HuHvnHN5Tj6wsEinCvjEIQ?w=32&h=32&qlt=90&pcl=fffffc&o=6&pid=1.2" type="image/png">
+    <title>城厢古镇 - 千年古城的历史与文化</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Google Fonts - 马善政字体（古朴风格） -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <!-- 中文字体 - 思源宋体（Noto Serif SC） -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+    <!-- GSAP 动画库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B4513', // 棕色作为主色调，体现古朴风格
+                        secondary: '#D2B48C', // 棕褐色作为辅助色
+                        accent: '#CD5C5C', // 赭石色作为强调色
+                        light: '#F5F5DC', // 米黄色作为浅色背景
+                        dark: '#333333' // 深灰色作为深色文本
+                    },
+                    fontFamily: {
+                        sans: ['PingFang SC', 'Microsoft YaHei', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.03);
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .ancient-font {
+                font-family: 'Ma Shan Zheng', 'STKaiti', 'KaiTi', serif;
+            }
+        }
+    </style>
+    <style>
+        /* 自定义样式 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #F5F5DC;
+            color: #333333;
+        }
+        
+        .ancient-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B4513' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+
+        
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #CD5C5C;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body class="ancient-pattern">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed top-0 left-0 w-full bg-black bg-opacity-70 backdrop-blur-md shadow-lg shadow-black/20 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://p11-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/ea4d97b657db48b8999468a8532096d6~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260204230754AB0044B1C6AD4A04D9CE&rrcfp=f06b921b&x-expires=1772809726&x-signature=ySpRQ8lviPsKNL%2Fm0k7zsGRTOOU%3D" alt="城厢古镇" class="h-10 w-auto rounded-full mr-3">
+                <h1 class="text-2xl font-bold text-light font-serif">城厢古镇</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-white hover:text-accent transition-all-300 active">首页</a>
+                <a href="#attractions" class="nav-link text-white hover:text-accent transition-all-300">景点介绍</a>
+                <a href="#history" class="nav-link text-white hover:text-accent transition-all-300">历史沿革</a>
+                <a href="#transportation" class="nav-link text-white hover:text-accent transition-all-300">交通信息</a>
+                <a href="#experience" class="nav-link text-white hover:text-accent transition-all-300">特色体验</a>
+                <a href="#team" class="nav-link text-white hover:text-accent transition-all-300">制作团队</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden bg-black bg-opacity-30 backdrop-blur-md text-white focus:outline-none w-10 h-10 rounded-full flex items-center justify-center border border-white border-opacity-20">
+                <i class="fa fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="md:hidden bg-black bg-opacity-90 backdrop-blur-md hidden">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#home" class="text-white hover:text-accent transition-all-300 py-2 border-b border-gray-700">首页</a>
+                <a href="#attractions" class="text-white hover:text-accent transition-all-300 py-2 border-b border-gray-700">景点介绍</a>
+                <a href="#history" class="text-white hover:text-accent transition-all-300 py-2 border-b border-gray-700">历史沿革</a>
+                <a href="#transportation" class="text-white hover:text-accent transition-all-300 py-2 border-b border-gray-700">交通信息</a>
+                <a href="#experience" class="text-white hover:text-accent transition-all-300 py-2">特色体验</a>
+                <a href="#team" class="text-white hover:text-accent transition-all-300 py-2">制作团队</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero 区 -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://free.picui.cn/free/2026/02/08/698881f703c6b.png" alt="城厢古镇全景" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        </div>
+        <div class="container mx-auto px-4 z-10 text-center">
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 text-shadow opacity-0 font-serif" id="hero-title">千年古城 · 城厢古镇</h2>
+            <p class="text-xl md:text-2xl text-white mb-8 max-w-2xl mx-auto text-shadow opacity-0 font-serif" id="hero-subtitle">一枕千年梦，半城烟火诗</p>
+            <a href="#attractions" class="inline-block bg-white bg-opacity-30 backdrop-blur-md text-white font-bold py-3 px-8 rounded-full transition-all-300 opacity-0 hover:shadow-lg transform hover:-translate-y-1 hover:scale-115 border border-white border-opacity-20" id="hero-button">
+                        探索古镇
+                    </a>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white scroll-indicator">
+            <i class="fa fa-angle-down text-4xl"></i>
+        </div>
+    </section>
+
+    <!-- 景点介绍 -->
+    <section id="attractions" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4 opacity-0" id="attractions-title">景点介绍</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6 opacity-0" id="attractions-line"></div>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto opacity-0" id="attractions-subtitle">
+                    城厢古镇保存有1护城河、4条主街、32条巷子以及108座人文院落，是成都平原唯一保留龟背形制的千年古城，被称为老成都的"活沙盘"。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="attractions-grid">
+                <!-- 绣川书院 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale opacity-0" data-delay="0">
+                    <div class="relative overflow-hidden">
+                        <img src="https://free.picui.cn/free/2026/02/06/69860645b3207.jpg" alt="绣川书院" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">绣川书院</h3>
+                        <p class="text-gray-700 mb-4 line-clamp-3">
+                            始建于北宋，是成都地区规模最大的书院之一，也是川西保存最为完好的古代县级官办书院，历史上曾为巴蜀地区培养过很多人才，朱熹曾在此讲学。
+                        </p>
+                        <a href="./xiuchuan/index.html" class="view-details bg-white bg-opacity-30 backdrop-blur-md text-accent hover:bg-opacity-40 transition-all-300 flex items-center py-2 px-4 rounded-full border border-accent border-opacity-20 inline-block">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 武庙 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale opacity-0" data-delay="0.2">
+                    <div class="relative overflow-hidden">
+                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-qvj2lq49k0/02bdd783ca36459890addf8efe2684b2~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769688&x-signature=6d3VmgZv9MrGI03dcOlOdKrpbZA%3D" alt="武庙" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">武庙</h3>
+                        <p class="text-gray-700 mb-4 line-clamp-3">
+                            川西唯一保存完整的县级武庙，供奉关羽，红墙青瓦极具古韵。高度比文庙高近1米，属全国少有。
+                        </p>
+                        <a href="./wumiao/index.html" class="view-details bg-white bg-opacity-30 backdrop-blur-md text-accent hover:bg-opacity-40 transition-all-300 flex items-center py-2 px-4 rounded-full border border-accent border-opacity-20 inline-block">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 陈氏宗祠 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale opacity-0" data-delay="0.4">
+                    <div class="relative overflow-hidden">
+                        <img src="https://p3-doubao-search-sign.byteimg.com/labis/c9001f3a0b9cccb2973a8f35bc3c56da~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769701&x-signature=9aD8l36zuh7yYXTCZRt7uKhRsEA%3D" alt="陈氏宗祠" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">陈氏宗祠</h3>
+                        <p class="text-gray-700 mb-4 line-clamp-3">
+                            近300年历史的客家祠堂，见证湖广移民文化，整体建筑规模宏大、精美豪华。
+                        </p>
+                        <a href="./chenshizongci/index.html" class="view-details bg-white bg-opacity-30 backdrop-blur-md text-accent hover:bg-opacity-40 transition-all-300 flex items-center py-2 px-4 rounded-full border border-accent border-opacity-20 inline-block">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 三清观 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale opacity-0" data-delay="0.6">
+                    <div class="relative overflow-hidden">
+                        <img src="https://p26-doubao-search-sign.byteimg.com/labis/27fa5d925e445030d0156bb5b685ee7e~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769701&x-signature=Y6vjOf1DlyevP6QKeAhEpVFOdQI%3D" alt="三清观" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">三清观</h3>
+                        <p class="text-gray-700 mb-4 line-clamp-3">
+                            始建于明代，是青白江区唯一开放的道教场所，与寿佛寺相邻，二者建筑风格独特，体现了道教文化与古建筑的结合。
+                        </p>
+                        <a href="./sanqingguan/index.html" class="view-details bg-white bg-opacity-30 backdrop-blur-md text-accent hover:bg-opacity-40 transition-all-300 flex items-center py-2 px-4 rounded-full border border-accent border-opacity-20 inline-block">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 西街 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale opacity-0" data-delay="0.8">
+                    <div class="relative overflow-hidden">
+                        <img src="https://pic1.zhimg.com/v2-e82fda96c14ed51fb1d58252f3c77502_1440w.jpg" alt="西街" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">西街</h3>
+                        <p class="text-gray-700 mb-4 line-clamp-3">
+                            西街全长320米，是古镇唯一保留最为完整的一条古街和古建筑群，这里才是古镇的精华所在，岁月凝固在老街上，历史镌刻在建筑中。
+                        </p>
+                        <a href="./xijie/index.html" class="view-details bg-white bg-opacity-30 backdrop-blur-md text-accent hover:bg-opacity-40 transition-all-300 flex items-center py-2 px-4 rounded-full border border-accent border-opacity-20 inline-block">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 城厢古镇全景 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale opacity-0" data-delay="1">
+                    <div class="relative overflow-hidden">
+                        <img src="https://p3-doubao-search-sign.byteimg.com/labis/6269655afcf226635a374db2e1edfd14~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769687&x-signature=feAeE06X7XSPelYjGtTE3IY8sW0%3D" alt="城厢古镇全景" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">古镇全景</h3>
+                        <p class="text-gray-700 mb-4 line-clamp-3">
+                            城厢古镇布局遵循宋代龟背制格局，保存有1护城河、4条主街、32条巷子以及108座人文院落，是成都平原唯一保留龟背形制的千年古城。
+                        </p>
+                        <button class="view-details bg-white bg-opacity-30 backdrop-blur-md text-accent hover:bg-opacity-40 transition-all-300 flex items-center py-2 px-4 rounded-full border border-accent border-opacity-20" data-id="6">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史沿革 -->
+    <section id="history" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4 opacity-0" id="history-title">历史沿革</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6 opacity-0" id="history-line"></div>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto opacity-0" id="history-subtitle">
+                    城厢古镇始建于南北朝时期的西魏（公元553年），曾为金堂县治所，明清时期商贸繁荣，有"小成都"之称。
+                </p>
+            </div>
+            
+            <div class="relative">
+                <!-- 滚动控制按钮 -->
+                <button id="timeline-prev" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white bg-opacity-30 backdrop-blur-md text-primary w-10 h-10 rounded-full flex items-center justify-center z-10 shadow-lg hover:bg-opacity-40 transition-all-300 border border-primary border-opacity-20">
+                    <i class="fa fa-chevron-left"></i>
+                </button>
+                <button id="timeline-next" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white bg-opacity-30 backdrop-blur-md text-primary w-10 h-10 rounded-full flex items-center justify-center z-10 shadow-lg hover:bg-opacity-40 transition-all-300 border border-primary border-opacity-20">
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+                
+                <!-- 横向时间轴容器 -->
+                <div class="overflow-x-auto scrollbar-hide pb-8">
+                    <div class="min-w-max" id="timeline">
+                        <!-- 汉代时期 -->
+                        <div class="timeline-item inline-block mr-8 w-80 md:w-96 opacity-0" data-delay="0">
+                            <div class="bg-light p-8 rounded-lg shadow-lg h-full">
+                                <h3 class="text-2xl font-bold text-primary mb-2">新都城建立</h3>
+                                <div class="mb-6">
+                                    <div class="text-accent font-bold text-3xl ancient-font">汉代</div>
+                                    <div class="text-accent font-bold text-xl">公元前202年 - 公元220年</div>
+                                </div>
+                                <div class="mb-6">
+                                    <img src="https://p26-doubao-search-sign.byteimg.com/tos-cn-i-tjoges91tu/TQ52lqM1JOHIfb~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769701&x-signature=zZ7iNwDvPBeeR8ZflD7aUAQX4E0%3D" alt="汉代新都城遗址" class="w-full h-48 object-cover rounded-lg">
+                                </div>
+                                <p class="text-gray-700">
+                                    2021年，汉代"新都城"遗址的发现，将城厢古城建城史向前推进700多年，确认了汉代的新都县城就位于现在的城厢古城。该遗址为古今重叠性遗址，是城市考古的又一典型遗存，延续时间久，堆积丰富，为研究汉代城址布局提供了重要资料。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 南北朝时期 -->
+                        <div class="timeline-item inline-block mr-8 w-80 md:w-96 opacity-0" data-delay="0.2">
+                            <div class="bg-light p-8 rounded-lg shadow-lg h-full">
+                                <h3 class="text-2xl font-bold text-primary mb-2">城厢古镇始建</h3>
+                                <div class="mb-6">
+                                    <div class="text-accent font-bold text-3xl ancient-font">南北朝西魏</div>
+                                    <div class="text-accent font-bold text-xl">公元553年</div>
+                                </div>
+                                <div class="mb-6">
+                                    <img src="https://p11-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/ea4d97b657db48b8999468a8532096d6~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260204230754AB0044B1C6AD4A04D9CE&rrcfp=f06b921b&x-expires=1772809726&x-signature=ySpRQ8lviPsKNL%2Fm0k7zsGRTOOU%3D" alt="古镇风光" class="w-full h-48 object-cover rounded-lg">
+                                </div>
+                                <p class="text-gray-700">
+                                    城厢古镇始建于南北朝时期的西魏（公元553年），曾为金堂县治所。古镇布局遵循宋代龟背制格局，是成都平原唯一保留龟背形制的千年古城，被称为老成都的"活沙盘"。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 明清时期 -->
+                        <div class="timeline-item inline-block mr-8 w-80 md:w-96 opacity-0" data-delay="0.4">
+                            <div class="bg-light p-8 rounded-lg shadow-lg h-full">
+                                <h3 class="text-2xl font-bold text-primary mb-2">商贸繁荣，"小成都"之称</h3>
+                                <div class="mb-6">
+                                    <div class="text-accent font-bold text-3xl ancient-font">明清时期</div>
+                                </div>
+                                <div class="mb-6">
+                                    <img src="https://p26-doubao-search-sign.byteimg.com/tos-cn-i-6w9my0ksvp/fbe64c97b4fc4a5482ee6605ac318620~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769687&x-signature=ISrBIGezWRgM7JRBQb45Y4sy59o%3D" alt="古镇街道" class="w-full h-48 object-cover rounded-lg">
+                                </div>
+                                <p class="text-gray-700">
+                                    明清时期，城厢古镇商贸繁荣，有"小成都"之称。这一时期，古镇内兴建了许多重要建筑，如绣川书院、武庙、陈氏宗祠等，这些建筑至今保存完好，成为古镇的重要文化遗产。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 现代 -->
+                        <div class="timeline-item inline-block w-80 md:w-96 opacity-0" data-delay="0.6">
+                            <div class="bg-light p-8 rounded-lg shadow-lg h-full">
+                                <h3 class="text-2xl font-bold text-primary mb-2">保护与发展</h3>
+                                <div class="mb-6">
+                                    <div class="text-accent font-bold text-3xl ancient-font">现代</div>
+                                    <div class="text-accent font-bold text-xl">1950年至今</div>
+                                </div>
+                                <div class="mb-6">
+                                    <img src="https://p26-doubao-search-sign.byteimg.com/labis/daa2652cd842754500b14b8a1eaafed3~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769687&x-signature=Ai4kk5rD2wPvncawBJjqHE7b%2F%2B0%3D" alt="古镇新貌" class="w-full h-48 object-cover rounded-lg">
+                                </div>
+                                <p class="text-gray-700">
+                                    1950年金堂县迁址赵镇后，城厢镇名称延续至今。如今，城厢古镇已成为四川省首批省级历史文化名镇之一，吸引着众多游客前来参观游览，感受千年古城的历史文化魅力。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 交通信息 -->
+    <section id="transportation" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4 opacity-0" id="transportation-title">交通信息</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6 opacity-0" id="transportation-line"></div>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto opacity-0" id="transportation-subtitle">
+                    城厢古镇位于四川省成都市青白江区，交通便利，多种方式均可到达。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 自驾 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg opacity-0" data-delay="0" id="driving-card">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-6">
+                            <i class="fa fa-car text-3xl text-primary"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary">自驾</h3>
+                    </div>
+                    <p class="text-gray-700 mb-6">
+                        从成都市区出发，沿成金青快速路行驶约1小时即可到达城厢古镇。古镇周边有多个停车场，方便游客停车。
+                    </p>
+                    <div class="bg-light p-4 rounded-lg">
+                        <h4 class="font-bold text-primary mb-2">路线推荐：</h4>
+                        <p class="text-gray-700">
+                            成都市区 → 成金青快速路 → 青白江区 → 城厢古镇
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 公共交通 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg opacity-0" data-delay="0.2" id="bus-card">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-6">
+                            <i class="fa fa-bus text-3xl text-primary"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary">公共交通</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-primary mb-2">高铁+公交：</h4>
+                            <p class="text-gray-700">
+                                成都东站乘高铁至青白江东站（15分钟），转乘Q6路公交直达城厢古镇。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-primary mb-2">地铁+公交：</h4>
+                            <p class="text-gray-700">
+                                地铁3号线到成都医学院站，换乘603路公交至城厢古镇。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 地图 -->
+            <div class="mt-12 bg-white p-8 rounded-lg shadow-lg opacity-0" id="map-container">
+                <h3 class="text-2xl font-bold text-primary mb-6">地理位置</h3>
+                <div class="w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
+                    <!-- 这里可以嵌入地图，或者使用静态地图图片 -->
+                    <div class="w-full h-full flex items-center justify-center bg-gray-100">
+                        <div class="text-center">
+                            <i class="fa fa-map-marker text-6xl text-accent mb-4"></i>
+                            <p class="text-xl font-bold text-primary">城厢古镇</p>
+                            <p class="text-gray-700">四川省成都市青白江区城厢镇</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色体验 -->
+    <section id="experience" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4 opacity-0" id="experience-title">特色体验</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6 opacity-0" id="experience-line"></div>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto opacity-0" id="experience-subtitle">
+                    城厢古镇不仅有丰富的历史文化遗产，还有许多特色体验等待您来探索。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 民俗文化 -->
+                <div class="bg-light p-6 rounded-lg shadow-lg hover-scale opacity-0" data-delay="0">
+                    <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-music text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-4 text-center">民俗文化</h3>
+                    <p class="text-gray-700 text-center">
+                        可以体验川剧座唱、城厢会馆等传统活动，感受当地的民俗风情。
+                    </p>
+                </div>
+                
+                <!-- 市井生活 -->
+                <div class="bg-light p-6 rounded-lg shadow-lg hover-scale opacity-0" data-delay="0.2">
+                    <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-cutlery text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-4 text-center">市井生活</h3>
+                    <p class="text-gray-700 text-center">
+                        漫步在青石板路上，逛逛茶馆、老字号小吃店和传统手工艺店铺，品尝城厢麻饼、酥肉锅盔等特色美食。
+                    </p>
+                </div>
+                
+                <!-- 文化节庆 -->
+                <div class="bg-light p-6 rounded-lg shadow-lg hover-scale opacity-0" data-delay="0.4">
+                    <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-calendar text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-4 text-center">文化节庆</h3>
+                    <p class="text-gray-700 text-center">
+                        每年举办"城厢之春"等民俗活动，如市级非遗"过街连箫"，届时还能看到舞龙舞狮、中外民俗巡游等热闹的文化活动。
+                    </p>
+                </div>
+                
+                <!-- 古今融合 -->
+                <div class="bg-light p-6 rounded-lg shadow-lg hover-scale opacity-0" data-delay="0.6">
+                    <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-vr-cardboard text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-4 text-center">古今融合</h3>
+                    <p class="text-gray-700 text-center">
+                        部分院落引入元宇宙、VR技术，打造沉浸式文旅体验，让游客在感受历史文化的同时，也能体验到现代科技的魅力。
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 特色美食 -->
+            <div class="mt-16 opacity-0" id="food-section">
+                <h3 class="text-3xl font-bold text-primary mb-8 text-center">特色美食</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-light rounded-lg overflow-hidden shadow-lg hover-scale">
+                        <div class="h-48">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.c9ac4b44ac667de6a3d29ad2a0b6ad8f?rik=u65AJ5AjcZoN0w&riu=http%3a%2f%2fimg3.yun300.cn%2frepository%2fimage%2f1saqfF2TTTqeS46wPXUpNQ.jpg_%7bi%7dxaf.jpg%3ftenantId%3d170669%26viewType%3d1&ehk=SoDBlxX0wt2keNFeaXRhjug9YGWYxzFiWVHZj04s4b4%3d&risl=&pid=ImgRaw&r=0" alt="城厢麻饼" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-primary mb-2">城厢麻饼</h4>
+                            <p class="text-gray-700">
+                                城厢麻饼是当地著名的传统小吃，外皮酥脆，内馅香甜，口感丰富，是游客必尝的美食之一。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-light rounded-lg overflow-hidden shadow-lg hover-scale">
+                        <div class="h-48">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.b57b901927a14067de29d83386f10bcd?rik=2V%2bcw3E6kCYQAA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20171128%2f4fb39352bcad468f96c4a8bb85a6cc06.jpeg&ehk=brPcCB0FkdOHT2uFJcsx2q7c3q6JkeuYecBuAq%2fAnVI%3d&risl=&pid=ImgRaw&r=0" alt="酥肉锅盔" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-primary mb-2">酥肉锅盔</h4>
+                            <p class="text-gray-700">
+                                酥肉锅盔是城厢古镇的特色美食，外酥里嫩，香气四溢，深受当地人和游客的喜爱。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-light rounded-lg overflow-hidden shadow-lg hover-scale">
+                        <div class="h-48">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/OIP-C.Gc0yFjIRdrGbYNOiYEETIAHaFV?cb=defcache2defcache=1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="盖碗茶" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-primary mb-2">盖碗茶</h4>
+                            <p class="text-gray-700">
+                                在古镇的茶馆里，品尝一杯正宗的盖碗茶，感受川西慢生活的悠闲与舒适。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 制作团队 -->
+    <section id="team" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4 opacity-0" id="team-title">制作团队</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6 opacity-0" id="team-line"></div>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto opacity-0" id="team-subtitle">
+                    本项目由大弯中学信息技术项目式学习团队打造，致力于传承和弘扬城厢古镇的历史文化。
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden opacity-0" id="team-content">
+                <div class="md:flex">
+                    <!-- 团队照片 -->
+                    <div class="md:w-1/2">
+                        <img src="https://img.cdn1.vip/i/6988532844d6a_1770541864.webp" 
+                             alt="制作团队" 
+                             class="w-full h-full object-cover min-h-[400px]">
+                    </div>
+                    
+                    <!-- 团队介绍 -->
+                    <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                        <a href="./renwujieshao/index.html" class="group">
+                            <h3 class="text-3xl font-bold text-primary mb-6 group-hover:text-accent transition-all-300">城厢古镇项目组 <i class="fa fa-arrow-right ml-2 text-lg"></i></h3>
+                        </a>
+                        
+                        <div class="space-y-4 text-gray-700">
+                            <p>
+                                我们是一支充满热情与创意的团队，由来自不同专业背景的成员组成。项目组成员包括历史研究者、文案策划、视觉设计师和技术开发人员。
+                            </p>
+                            <p>
+                                在为期数月的调研与制作过程中，我们深入城厢古镇的每一个角落，走访当地居民，查阅历史文献，力求将最真实、最完整的古镇风貌呈现给大家。
+                            </p>
+                            <p>
+                                我们的目标是让更多人了解和关注这座千年古城，感受其深厚的历史文化底蕴，共同为传统文化的保护与传承贡献力量。
+                            </p>
+                        </div>
+                        
+                        <div class="mt-8 pt-8 border-t border-gray-200">
+                            <h4 class="text-xl font-bold text-primary mb-4">团队成员</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fa fa-user text-primary"></i>
+                                    </div>
+                                    <span class="text-gray-700">项目负责人</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fa fa-pencil text-primary"></i>
+                                    </div>
+                                    <span class="text-gray-700">文案策划</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fa fa-paint-brush text-primary"></i>
+                                    </div>
+                                    <span class="text-gray-700">视觉设计</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fa fa-code text-primary"></i>
+                                    </div>
+                                    <span class="text-gray-700">技术开发</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">城厢古镇</h3>
+                    <p class="mb-4">
+                        千年古城，历史文化名镇，成都平原唯一保留龟背形制的千年古城。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-secondary transition-all-300">
+                            <i class="fa fa-weixin text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-secondary transition-all-300">
+                            <i class="fa fa-weibo text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-secondary transition-all-300">
+                            <i class="fa fa-instagram text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-secondary hover:text-white transition-all-300">首页</a></li>
+                        <li><a href="./xiuchuan/index.html" class="text-secondary hover:text-white transition-all-300">绣川书院</a></li>
+                        <li><a href="./wumiao/index.html" class="text-secondary hover:text-white transition-all-300">武庙</a></li>
+                        <li><a href="./chenshizongci/index.html" class="text-secondary hover:text-white transition-all-300">陈氏宗祠</a></li>
+                        <li><a href="./sanqingguan/index.html" class="text-secondary hover:text-white transition-all-300">三清观</a></li>
+                        <li><a href="./xijie/index.html" class="text-secondary hover:text-white transition-all-300">西街</a></li>
+                        <li><a href="./renwujieshao/index.html" class="text-secondary hover:text-white transition-all-300">人物介绍</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">联系我们</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fa fa-map-marker mr-2"></i>
+                            <span>四川省成都市青白江区城厢镇</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone mr-2"></i>
+                            <span>028-12345678</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope mr-2"></i>
+                            <span>Luoxi7840@outlook.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-secondary border-opacity-30 mt-8 pt-8 text-center">
+                <p>© 2026 大弯中学信息技术项目式小组. 保留所有权利.</p>
+                <p>luoxi7840@outlook.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 古镇全景详情模态框 -->
+    <div id="attraction-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black bg-opacity-75" id="modal-overlay"></div>
+        <div class="modal-content bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto z-10">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-3xl font-bold text-primary" id="modal-title">城厢古镇全景</h3>
+                    <button id="close-modal" class="bg-white bg-opacity-30 backdrop-blur-md text-gray-500 hover:text-gray-700 focus:outline-none w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 border-opacity-20">
+                        <i class="fa fa-times text-2xl"></i>
+                    </button>
+                </div>
+                
+                <div class="mb-8" id="modal-image-container">
+                    <img src="https://p3-doubao-search-sign.byteimg.com/labis/6269655afcf226635a374db2e1edfd14~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769687&x-signature=feAeE06X7XSPelYjGtTE3IY8sW0%3D" alt="城厢古镇全景" class="w-full h-96 object-cover rounded-lg" id="modal-image">
+                </div>
+                
+                <div class="space-y-4" id="modal-content">
+                    <p class="text-gray-700" id="modal-description">
+                        城厢古镇布局遵循宋代龟背制格局，保存有1护城河、4条主街、32条巷子以及108座人文院落，是成都平原唯一保留龟背形制的千年古城，被称为老成都的"活沙盘"。
+
+古镇内的建筑多为明清时期的川西民居风格，白墙黑瓦，飞檐翘角，古朴典雅。街道布局严谨，呈棋盘状分布，主要街道有东街、西街、南街、北街四条，与32条巷子相互连通，形成了独特的城市格局。
+
+城厢古镇不仅保存了丰富的历史文化遗产，还有着浓厚的市井文化氛围。古镇内有许多传统的茶馆、小吃店、手工艺品店等，游客可以在这里品尝当地特色美食，购买手工艺品，体验川西传统的市井生活。
+
+近年来，城厢古镇进行了保护性开发，在保留历史风貌的同时，完善了旅游设施，提升了旅游服务质量，成为了成都周边重要的旅游目的地之一。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化 GSAP ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Hero 区动画
+            gsap.to('#hero-title', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.5
+            });
+            
+            gsap.to('#hero-subtitle', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.8
+            });
+            
+            gsap.to('#hero-button', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 1.1
+            });
+            
+            // 导航栏滚动效果
+            const nav = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    nav.classList.add('py-2');
+                    nav.classList.remove('py-3');
+                } else {
+                    nav.classList.add('py-3');
+                    nav.classList.remove('py-2');
+                }
+            });
+            
+            // 移动端菜单
+            const menuBtn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            
+            menuBtn.addEventListener('click', function() {
+                menu.classList.toggle('hidden');
+            });
+            
+            // 导航链接点击事件
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileLinks = document.querySelectorAll('#mobile-menu a');
+            
+            function setActiveLink() {
+                const scrollPosition = window.scrollY;
+                
+                document.querySelectorAll('section').forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', setActiveLink);
+            setActiveLink();
+            
+            // 移动端导航链接点击关闭菜单
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    menu.classList.add('hidden');
+                });
+            });
+            
+            // 景点介绍动画
+            gsap.to('#attractions-title', {
+                scrollTrigger: {
+                    trigger: '#attractions',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8
+            });
+            
+            gsap.to('#attractions-line', {
+                scrollTrigger: {
+                    trigger: '#attractions',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                width: '6rem',
+                duration: 0.8,
+                delay: 0.2
+            });
+            
+            gsap.to('#attractions-subtitle', {
+                scrollTrigger: {
+                    trigger: '#attractions',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.4
+            });
+            
+            // 景点卡片动画
+            const attractionCards = document.querySelectorAll('#attractions-grid > div');
+            attractionCards.forEach(card => {
+                const delay = card.getAttribute('data-delay') || 0;
+                gsap.to(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: delay
+                });
+            });
+            
+            // 历史沿革动画
+            gsap.to('#history-title', {
+                scrollTrigger: {
+                    trigger: '#history',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8
+            });
+            
+            gsap.to('#history-line', {
+                scrollTrigger: {
+                    trigger: '#history',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                width: '6rem',
+                duration: 0.8,
+                delay: 0.2
+            });
+            
+            gsap.to('#history-subtitle', {
+                scrollTrigger: {
+                    trigger: '#history',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.4
+            });
+            
+            // 时间轴项目动画
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                const delay = item.getAttribute('data-delay') || 0;
+                gsap.to(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 85%'
+                    },
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    delay: delay
+                });
+            });
+            
+            // 交通信息动画
+            gsap.to('#transportation-title', {
+                scrollTrigger: {
+                    trigger: '#transportation',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8
+            });
+            
+            gsap.to('#transportation-line', {
+                scrollTrigger: {
+                    trigger: '#transportation',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                width: '6rem',
+                duration: 0.8,
+                delay: 0.2
+            });
+            
+            gsap.to('#transportation-subtitle', {
+                scrollTrigger: {
+                    trigger: '#transportation',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.4
+            });
+            
+            gsap.to('#driving-card', {
+                scrollTrigger: {
+                    trigger: '#driving-card',
+                    start: 'top 85%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.6
+            });
+            
+            gsap.to('#bus-card', {
+                scrollTrigger: {
+                    trigger: '#bus-card',
+                    start: 'top 85%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.8
+            });
+            
+            gsap.to('#map-container', {
+                scrollTrigger: {
+                    trigger: '#map-container',
+                    start: 'top 85%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 1
+            });
+            
+            // 特色体验动画
+            gsap.to('#experience-title', {
+                scrollTrigger: {
+                    trigger: '#experience',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8
+            });
+            
+            gsap.to('#experience-line', {
+                scrollTrigger: {
+                    trigger: '#experience',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                width: '6rem',
+                duration: 0.8,
+                delay: 0.2
+            });
+            
+            gsap.to('#experience-subtitle', {
+                scrollTrigger: {
+                    trigger: '#experience',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.4
+            });
+            
+            // 特色体验卡片动画
+            const experienceCards = document.querySelectorAll('#experience .grid > div');
+            experienceCards.forEach(card => {
+                const delay = card.getAttribute('data-delay') || 0;
+                gsap.to(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: delay
+                });
+            });
+            
+            gsap.to('#food-section', {
+                scrollTrigger: {
+                    trigger: '#food-section',
+                    start: 'top 85%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.8
+            });
+            
+            // 制作团队动画
+            gsap.to('#team-title', {
+                scrollTrigger: {
+                    trigger: '#team',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8
+            });
+            
+            gsap.to('#team-line', {
+                scrollTrigger: {
+                    trigger: '#team',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                width: '6rem',
+                duration: 0.8,
+                delay: 0.2
+            });
+            
+            gsap.to('#team-subtitle', {
+                scrollTrigger: {
+                    trigger: '#team',
+                    start: 'top 80%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.4
+            });
+            
+            gsap.to('#team-content', {
+                scrollTrigger: {
+                    trigger: '#team-content',
+                    start: 'top 85%'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.6
+            });
+            
+            // 时间轴滚动控制
+            const timelineContainer = document.querySelector('#history .overflow-x-auto');
+            const timelinePrev = document.getElementById('timeline-prev');
+            const timelineNext = document.getElementById('timeline-next');
+            
+            if (timelinePrev && timelineNext) {
+                timelinePrev.addEventListener('click', function() {
+                    timelineContainer.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+                
+                timelineNext.addEventListener('click', function() {
+                    timelineContainer.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            }
+            
+            // 古镇全景模态框
+            const modal = document.getElementById('attraction-modal');
+            const modalOverlay = document.getElementById('modal-overlay');
+            const closeBtn = document.getElementById('close-modal');
+            const detailBtns = document.querySelectorAll('.view-details');
+            
+            // 打开古镇全景模态框（只有data-id="6"的按钮）
+            detailBtns.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const attractionId = this.getAttribute('data-id');
+                    
+                    // 只有古镇全景（id=6）打开模态框，其他链接已改为<a>标签
+                    if (attractionId === '6') {
+                        e.preventDefault();
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            // 关闭模态框
+            function closeModalFunc() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            closeBtn.addEventListener('click', closeModalFunc);
+            modalOverlay.addEventListener('click', closeModalFunc);
+            
+            // 图片懒加载
+            const lazyImages = document.querySelectorAll('img');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const image = entry.target;
+                            image.classList.add('loaded');
+                            imageObserver.unobserve(image);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(image => {
+                    imageObserver.observe(image);
+                });
+            } else {
+                // 回退方案
+                lazyImages.forEach(image => {
+                    image.classList.add('loaded');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

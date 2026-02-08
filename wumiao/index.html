@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城厢武庙 - 蜀中名将有几？气壮山河卫羌蒙</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - 马善政字体（古朴风格） -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <!-- 中文字体 - 思源宋体（Noto Serif SC） -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* 全局样式重置与基础设置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "SimSun", "宋体", sans-serif;
+            color: #332b20;
+            line-height: 1.8;
+            padding: 20px;
+            /* 背景图片样式 */
+            background-image: linear-gradient(rgba(248, 245, 240, 0.8), rgba(248, 245, 240, 0.8)), 
+                              url(https://p11-doubao-search-sign.byteimg.com/tos-cn-i-qvj2lq49k0/02bdd783ca36459890addf8efe2684b2~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769688&x-signature=6d3VmgZv9MrGI03dcOlOdKrpbZA%3D);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-color: #f8f5f0;
+        }
+
+        /* 标题字体设置为思源宋体 */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Noto Serif SC", "SimSun", "宋体", serif;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo h1 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            font-weight: normal;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .navbar-menu li a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-menu li a:hover {
+            color: #ffffff;
+        }
+
+        .navbar-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-menu li a:hover::after {
+            width: 100%;
+        }
+
+        /* 移动端菜单按钮 */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 页面头部样式 */
+        .header {
+            text-align: center;
+            padding: 120px 0 30px;
+            border-bottom: 2px solid #c9b89c;
+            margin-bottom: 40px;
+            background-color: rgba(248, 245, 240, 0.9);
+            border-radius: 8px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            color: #8c6d31;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #6b5b45;
+            letter-spacing: 2px;
+        }
+
+        /* 主体内容样式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 图片展示样式 */
+        .temple-img-box {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .temple-img {
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            border: 10px solid rgba(255, 255, 255, 0.95);
+        }
+
+        /* 主体内容区块 */
+        .temple-section {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .temple-section h2 {
+            font-size: 2rem;
+            color: #8c6d31;
+            margin-bottom: 30px;
+            padding-left: 15px;
+            border-left: 5px solid #c9b89c;
+        }
+
+        .temple-section p {
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            text-indent: 2em;
+            color: #333;
+        }
+
+        /* 超链接样式设计（古韵风格） */
+        .ancient-link {
+            display: inline-block;
+            text-decoration: none;
+            color: #5a4321;
+            background-color: #f0e6d2;
+            padding: 12px 25px;
+            border: 1px solid #c9b89c;
+            border-radius: 4px;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .ancient-link:hover {
+            background-color: #e6d8b8;
+            border-color: #b8a37e;
+            color: #4a3718;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-group {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        /* 锚点对应内容样式优化 */
+        #history, #architecture, #culture, #visit {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 50px;
+            border-radius: 8px;
+            margin: 50px 0 !important;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #history h2, #architecture h2, #culture h2, #visit h2 {
+            color: #8c6d31;
+            margin-bottom: 30px;
+            padding-left: 15px;
+            border-left: 5px solid #c9b89c;
+        }
+
+        /* 底部样式 */
+        .footer {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+        .footer-contact {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-contact li i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .temple-section {
+                padding: 25px 30px;
+            }
+            
+            .temple-img {
+                border-width: 6px;
+            }
+            
+            .ancient-link {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            #history, #architecture, #culture, #visit {
+                padding: 25px 30px;
+            }
+            
+            /* 导航栏响应式调整 */
+            .navbar-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .navbar-menu li {
+                width: 100%;
+            }
+
+            .navbar-menu li a {
+                display: block;
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar-container {
+                padding: 0 15px;
+            }
+
+            .navbar-logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .header {
+                padding: 100px 0 20px;
+            }
+            
+            /* 底部响应式调整 */
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+            
+            .footer {
+                padding: 30px 0;
+            }
+            
+            .footer-container {
+                padding: 0 15px;
+            }
+            
+            .footer-column h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+    <script>
+        // 移动端菜单交互
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navbarMenu = document.querySelector('.navbar-menu');
+
+            menuToggle.addEventListener('click', function() {
+                navbarMenu.classList.toggle('active');
+            });
+
+            // 点击菜单项后关闭菜单
+            const menuItems = document.querySelectorAll('.navbar-menu li a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navbarMenu.classList.remove('active');
+                });
+            });
+
+            // 滚动时导航栏样式变化
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                } else {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <h1>城厢武庙</h1>
+            </div>
+            <nav>
+                <ul class="navbar-menu">
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="#history">历史沿革</a></li>
+                    <li><a href="#architecture">建筑格局</a></li>
+                    <li><a href="#culture">文化内涵</a></li>
+                    <li><a href="#visit">参观指南</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <!-- 页面头部 -->
+    <div class="header">
+        <h1>城厢武庙</h1>
+        <p>蜀中名将有几？气壮山河卫羌蒙</p>
+    </div>
+
+    <!-- 主体内容容器 -->
+    <div class="container">
+        <!-- 城厢武庙实景图片 -->
+        <div class="temple-img-box">
+            <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-qvj2lq49k0/02bdd783ca36459890addf8efe2684b2~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769688&x-signature=6d3VmgZv9MrGI03dcOlOdKrpbZA%3D" 
+                 alt="城厢武庙正殿" 
+                 class="temple-img">
+        </div>
+
+        <!-- 城厢武庙介绍 -->
+        <div class="temple-section">
+            <h2>武庙概述</h2>
+            <p>城厢武庙，又称忠烈祠、关帝庙、关岳庙，位于成都市青白江区城厢镇大东街，是四川省重点文物保护单位。武庙始建年代无可稽考，原在城厢镇东北隅的文昌宫后面城墙旁。乾隆六年（1741年），金堂县知县田多稼重加修葺，嘉庆十三年（1808年），知县谢惟杰耗巨资将武庙迁建于今址。光绪六年，知县曾景福重修。民国四年（1915），奉文合祀岳武穆，改称关岳庙。</p>
+            <p>武庙祭祀的是被皇帝敕封为忠义、神武、灵佑的关圣大帝。每至农历五月十三，是祭祀关圣大帝的日子，衙门官员必来武庙祭拜。城厢武庙高度为12米，超过高度为11.1米的文庙，虽然相差不到1米，但这种武庙超过文庙的现象全国罕见。</p>
+            <p>武庙建筑分为三进院落，一进是前院，有辕门、仪门；二进院落由仪门到正殿；三进院落由正殿和倒座房构成，后院则为月台东西厢房和正殿构成。院内保存有丰富的历史文物和壁画，展现了关羽生平故事和武庙历史沿革。</p>
+
+            <!-- 超链接组（古韵风格超链接） -->
+            <div class="link-group">
+                <a href="#history" class="ancient-link">探索历史沿革</a>
+                <a href="#architecture" class="ancient-link">了解建筑格局</a>
+                <a href="#culture" class="ancient-link">感受文化内涵</a>
+                <a href="#visit" class="ancient-link">查看参观指南</a>
+            </div>
+        </div>
+
+        <!-- 锚点对应内容 -->
+        <div id="history">
+            <h2>历史沿革</h2>
+            <p>城厢武庙的历史可以追溯到明代，原在城厢镇东北隅的文昌宫后面城墙旁，始建年代无可稽考。乾隆六年（1741年），金堂县知县田多稼重加修葺，但由于位置靠近城墙角落，无法扩大规模。</p>
+            <p>嘉庆十三年（1808）春，金堂县令谢惟杰与几位士绅到明教寺观光，众人登上钟楼，看到墙外有一大片空地。在士绅的建议下，谢知县决定倡捐新修武庙，将其迁建于今址。他派人从民间找到了4根有数百年之久的大树作为正殿的顶梁柱，招募了上百名工匠加班加点地修建，从成都请来能工巧匠塑关公像等。当时远近士庶商贾军民无不踊跃参与，捐资捐劳力，耗银万两有余。嘉庆十四年（1809）夏，新建的武庙竣工，落成之日，举行了盛大的开光祭祀活动，万民欢呼。</p>
+            <p>光绪六年，知县曾景福重修武庙。民国四年（1915），奉文合祀岳武穆，改称关岳庙。1939年，山西汾阳的铭义中学随铭贤中学为避战乱迁来金堂，铭义中学曾以武庙为校址。1948年金堂县教育局在县立中学师范部基础上，建立了独立的金堂县简易师范学校，校址设在武庙内，1949年改名为金堂县立师范学校，将武庙设为学校多年。</p>
+            <p>解放后，原有的东西廊庑及一些建筑设施，划归城厢中学使用。如今，经过修缮后的城厢武庙已恢复了昔日的风貌，成为城厢古镇的重要文化景点。</p>
+        </div>
+
+        <div id="architecture">
+            <h2>建筑格局</h2>
+            <p>城厢武庙坐落在大东街觉皇殿右侧，坐北朝南。仪门的左侧为忠烈祠山门，仪门正对大东街的这一路段，因建武庙成街，故名忠烈祠街，是城厢古城最短的一条街巷。</p>
+            <p>武庙建筑分为三进院落：</p>
+            <p>一进是前院，有辕门、仪门。仪门外镇守神兽一对（狻猊），外貌特征与石狮相差无几，立于左右凛凛生威。仪门廊内两侧有钟、鼓各一，似旧时衙门布局。大门处“武庙”两个烫金的大字高悬于门楣上，熠熠生辉。</p>
+            <p>二进院落由仪门到正殿，院子很大，摆有香台。院子建有东、西庑连廊，并以“关圣帝君圣迹图志全集”、“武庙历史沿革组画”为故事蓝本绘制两侧壁画。东庑壁画通过对古籍中版画复刻再创作，以淡彩绘壁画展现大众耳熟能详的关羽生平故事，包括了桃源义聚、涿州全胜、大破张角、迅斩华雄、救释张辽、三约明志、秉烛达旦、五关斩将、华容释曹等。西庑壁画主要是对武庙历史沿革进行讲述，时间跨度自唐开始至当今的演变历程。</p>
+            <p>三进院落由正殿和倒座房构成，后院则为月台东西厢房和正殿构成。庙内正殿中央是铸铜彩绘塑武圣关公造像，面对左立周仓，右立关平，雕像气势威严；塑像前供奉祭祀物按沿革恢复，大殿内两侧墙悬从祀水墨画像12幅，地面立18般兵器及回避肃禁牌。</p>
+            <p>武庙高度为12米，超过高度为11.1米的文庙，虽然相差不到1米，但这种武庙超过文庙的现象全国罕见，成为城厢古镇的一大特色。</p>
+        </div>
+
+        <div id="culture">
+            <h2>文化内涵</h2>
+            <p>武庙祭祀的是被皇帝敕封为忠义、神武、灵佑的关圣大帝。关帝在雍正五年封神，他的曾祖父是光昭公，祖父是裕昌公，父亲是成忠公，他们的神位也增设在后殿供奉。每年春秋两季的第二个月吉日，以及五月十三日，衙门众多官员都会在这里举行祭祀活动。</p>
+            <p>城厢武庙有着丰富的文化内涵，其中最著名的是清代蜀中名士何元普为武庙撰书的34字长联《题金堂县武庙关圣殿》：</p>
+            <p style="font-style: italic; text-align: center; margin: 20px 0;">扶鼎三分，天下唯汉难忘，心悬日月空吴魏；<br>掀髯一笑，蜀中名将有几？气壮山河卫羌蒙。</p>
+            <p>这幅楹联生动地展现了关羽的忠义精神和英雄气概，成为武庙的重要文化遗产。</p>
+            <p>此外，武庙的壁画也是其文化内涵的重要组成部分。东庑壁画展现了关羽生平故事，西庑壁画讲述了武庙历史沿革，每幅壁画栩栩如生，独成故事，让人想起了孩提时代的“连环画”。这些壁画不仅是艺术珍品，也是研究关羽文化和武庙历史的重要资料。</p>
+            <p>每年农历五月十三日为祭祀武财神关圣人的日子，届时热闹非凡，成为城厢古镇的重要民俗活动。</p>
+        </div>
+
+        <div id="visit">
+            <h2>参观指南</h2>
+            <p>📍 地址：成都市青白江区城厢镇大东街（城厢古镇核心区）</p>
+            <p>⏰ 开放时间：每日9:00-17:00（16:30停止入场，每周一闭馆维护）</p>
+            <p>🎫 门票：免费对外开放</p>
+            <p>🚗 交通：可乘坐成都地铁3号线至成都医学院站，换乘Q22路公交至城厢镇；自驾可导航“城厢武庙”，古镇内有专属停车场。</p>
+            <p>💡 贴士：</p>
+            <ul style="margin-left: 40px; margin-bottom: 20px;">
+                <li>武庙参观时间约30分钟，建议与相邻的明教寺、绣川书院等景点一同游览。</li>
+                <li>院内保存有丰富的壁画和历史文物，值得细细品味。</li>
+                <li>每年农历五月十三日是祭祀关圣大帝的日子，届时会有盛大的祭祀活动，建议在此时前往体验传统文化。</li>
+                <li>武庙内有专业讲解员，可提前预约讲解服务。</li>
+            </ul>
+            <p>城厢武庙不仅是一座历史悠久的古建筑，更是蜀中关羽文化的重要载体，是了解城厢古镇历史文化的重要窗口。</p>
+        </div>
+    </div>
+
+    <!-- 页面底部 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>城厢武庙</h3>
+                    <p>城厢武庙，又称忠烈祠、关帝庙、关岳庙，是四川省重点文物保护单位。始建于明代，清嘉庆十三年（1808年）迁建于今址，高度为12米，超过相邻的文庙，全国罕见。武庙祭祀关圣大帝，保存有丰富的历史文物和壁画，是蜀中关羽文化的重要载体。</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fa fa-weixin"></i></a>
+                        <a href="#"><i class="fa fa-weibo"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">首页</a></li>
+                        <li><a href="#history">历史沿革</a></li>
+                        <li><a href="#architecture">建筑格局</a></li>
+                        <li><a href="#culture">文化内涵</a></li>
+                        <li><a href="#visit">参观指南</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fa fa-map-marker"></i> 成都市青白江区城厢镇大东街</li>
+                        <li><i class="fa fa-phone"></i> 028-12345678</li>
+                        <li><i class="fa fa-envelope"></i> Luoxi7840@outlook.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 大弯中学信息技术项目式小组. 保留所有权利.</p>
+                <p>luoxi7840@outlook.com</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

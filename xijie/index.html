@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城厢西街 - 古韵悠长，岁月沉香</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - 马善政字体（古朴风格） -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <!-- 中文字体 - 思源宋体（Noto Serif SC） -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* 全局样式重置与基础设置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "SimSun", "宋体", sans-serif;
+            color: #332b20;
+            line-height: 1.8;
+            padding: 20px;
+            /* 背景图片样式 */
+            background-image: url(https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/895e2e7909044ac5979f7715fc718179.jpeg~tplv-a9rns2rl98-24:720:720.jpeg?rcl=20251221171915A66D8A57137F281C24BD&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1766913556&x-signature=DvulWG9qB37zjTwdPjMqaPTPfCQ%3D);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-color: #f8f5f0;
+        }
+
+        /* 标题字体设置为思源宋体 */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Noto Serif SC", "SimSun", "宋体", serif;
+        }
+
+        /* 页面头部样式 */
+        .header {
+            text-align: center;
+            padding: 120px 0 30px;
+            border-bottom: 2px solid #c9b89c;
+            margin-bottom: 40px;
+            background-color: rgba(248, 245, 240, 0.9);
+            border-radius: 8px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            color: #8c6d31;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #6b5b45;
+            letter-spacing: 2px;
+        }
+
+        /* 主体内容样式 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* 图片展示样式 */
+        .street-img-box {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .street-img {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            border: 8px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .west-street-intro {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .west-street-intro h2 {
+            font-size: 1.8rem;
+            color: #7a5c29;
+            margin-bottom: 25px;
+            padding-left: 10px;
+            border-left: 4px solid #c9b89c;
+        }
+
+        .west-street-intro p {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            text-indent: 2em;
+        }
+
+        /* 超链接样式设计（古韵风格） */
+        .ancient-link {
+            display: inline-block;
+            text-decoration: none;
+            color: #5a4321;
+            background-color: #f0e6d2;
+            padding: 12px 25px;
+            border: 1px solid #c9b89c;
+            border-radius: 4px;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .ancient-link:hover {
+            background-color: #e6d8b8;
+            border-color: #b8a37e;
+            color: #4a3718;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-group {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo h1 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            font-weight: normal;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .navbar-menu li a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-menu li a:hover {
+            color: #ffffff;
+        }
+
+        .navbar-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-menu li a:hover::after {
+            width: 100%;
+        }
+
+        /* 移动端菜单按钮 */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 底部样式 */
+        .footer {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+        .footer-contact {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-contact li i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* 锚点对应内容样式优化 */
+        #detail, #history, #scenic, #culture {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px 40px;
+            border-radius: 8px;
+            margin: 50px 0 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        #detail h2, #history h2, #scenic h2, #culture h2 {
+            color: #7a5c29;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid #c9b89c;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .west-street-intro {
+                padding: 20px 25px;
+            }
+            .street-img {
+                border-width: 4px;
+            }
+            
+            /* 导航栏响应式调整 */
+            .navbar-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .navbar-menu li {
+                width: 100%;
+            }
+
+            .navbar-menu li a {
+                display: block;
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar-container {
+                padding: 0 15px;
+            }
+
+            .navbar-logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .header {
+                padding: 100px 0 20px;
+            }
+            
+            /* 底部响应式调整 */
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+            
+            .footer {
+                padding: 30px 0;
+            }
+            
+            .footer-container {
+                padding: 0 15px;
+            }
+            
+            .footer-column h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+    <script>
+        // 移动端菜单交互
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navbarMenu = document.querySelector('.navbar-menu');
+
+            menuToggle.addEventListener('click', function() {
+                navbarMenu.classList.toggle('active');
+            });
+
+            // 点击菜单项后关闭菜单
+            const menuItems = document.querySelectorAll('.navbar-menu li a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navbarMenu.classList.remove('active');
+                });
+            });
+
+            // 滚动时导航栏样式变化
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                } else {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <h1>城厢西街</h1>
+            </div>
+            <nav>
+                <ul class="navbar-menu">
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="#detail">古韵风貌</a></li>
+                    <li><a href="#history">历史渊源</a></li>
+                    <li><a href="#scenic">核心景点</a></li>
+                    <li><a href="#culture">民俗文化</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <!-- 页面头部 -->
+    <div class="header">
+        <h1>城厢西街</h1>
+        <p>一砖一瓦藏古韵，一街一巷载时光</p>
+    </div>
+
+    <!-- 主体内容容器 -->
+    <div class="container">
+        <!-- 城厢西街实景图片 -->
+        <div class="street-img-box">
+            <img src="https://pic1.zhimg.com/v2-e82fda96c14ed51fb1d58252f3c77502_1440w.jpg" 
+                 alt="城厢西街古牌坊实景" 
+                 class="street-img">
+        </div>
+
+        <!-- 城厢西街介绍 -->
+        <div class="west-street-intro">
+            <h2>西街古韵，流芳百世</h2>
+            <p>城厢西街，作为当地历史文化的核心承载地，距今已有数百余年历史，是连接古今的时光纽带。这里曾是明清时期的商贸重镇，青石板路蜿蜒曲折，踩上去仿佛能听见岁月流淌的声响；两侧的古民居错落有致，飞檐翘角、雕梁画栋，每一处细节都镌刻着老时光的印记，诉说着昔日的繁华与故事。</p>
+            <p>在这里，你可以邂逅百年老字号的商铺，品味传承已久的传统美食；可以驻足于古色古香的院落之中，感受川蜀古镇的独特韵味；更能在晨雾与暮色中，体会那份远离尘嚣的宁静与悠远，仿佛穿越回那个慢节奏的旧时光里。</p>
+            <p>城厢西街不仅是建筑的博物馆，更是文化的活化石，民俗风情、传统技艺在这里代代相传，成为不可复制的历史文化瑰宝。</p>
+
+            <!-- 超链接组（古韵风格超链接） -->
+            <div class="link-group">
+                <a href="#detail" class="ancient-link">查看西街详细古韵风貌</a>
+                <a href="#history" class="ancient-link">探寻西街百年历史渊源</a>
+                <a href="#scenic" class="ancient-link">浏览西街核心景点介绍</a>
+                <a href="#culture" class="ancient-link">感受西街传统民俗文化</a>
+            </div>
+        </div>
+
+        <!-- 锚点对应内容（可根据需求扩展） -->
+        <div id="detail">
+            <h2>西街古韵风貌详情</h2>
+            <p>城厢西街的青石板路全长约500余米，均由整块青石铺设而成，历经岁月冲刷与行人踩踏，表面温润光滑，布满了深浅不一的痕迹，这是时光留下的独特印记。两侧的古民居多为砖木结构，灰墙黛瓦，门窗上的木雕图案栩栩如生，有花鸟鱼虫、人物典故，每一幅都是传统工艺的精湛展现。</p>
+        </div>
+
+        <div id="history">
+            <h2>西街百年历史渊源</h2>
+            <p>城厢西街始建于明永乐年间，最初为当地士绅聚居之地，后随着陆路交通的发展，逐渐成为商贸集散地，南来北往的商人在此汇聚，形成了繁华的商业街市。清乾隆年间，西街达到鼎盛时期，拥有商铺百余家，涉及绸缎、茶叶、粮油等数十个行业，素有"金西街"的美誉。清末民初，虽历经时代变迁，西街仍保留了核心的建筑风貌与商贸格局，延续着昔日的文脉。</p>
+        </div>
+
+        <div id="scenic">
+            <h2>西街核心景点介绍</h2>
+            <p>西街核心景点包括百年古宅、明清牌坊、西街古戏台等。古宅是当地名门望族的故居，院落布局精巧，假山流水、亭台楼阁一应俱全，尽显古人家族的雅致生活；明清牌坊为石质结构，雕刻精美，是为表彰当地贤达之士而建，具有极高的历史与艺术价值；古戏台则见证了西街的民俗演艺盛景，如今仍是游客打卡留念的热门地点。</p>
+        </div>
+
+        <div id="culture">
+            <h2>西街传统民俗文化</h2>
+            <p>城厢西街的民俗文化丰富多彩，每年春节的舞龙舞狮、元宵节的花灯会、中秋节的赏月祈福等活动，传承百年从未间断。此外，这里还保留着剪纸、木雕、手工酿酒等传统技艺，老艺人们坚守着匠心，将古老的技艺代代相传。来到西街，你可以亲手体验剪纸制作，品尝手工酿造的米酒，感受最地道的川蜀传统民俗风情。</p>
+        </div>
+    </div>
+
+    <!-- 页面底部 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>城厢西街</h3>
+                    <p>城厢西街，作为当地历史文化的核心承载地，距今已有数百余年历史，是连接古今的时光纽带。这里曾是明清时期的商贸重镇，青石板路蜿蜒曲折，两侧的古民居错落有致，飞檐翘角、雕梁画栋，每一处细节都镌刻着老时光的印记。</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fa fa-weixin"></i></a>
+                        <a href="#"><i class="fa fa-weibo"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">首页</a></li>
+                        <li><a href="#detail">古韵风貌</a></li>
+                        <li><a href="#history">历史渊源</a></li>
+                        <li><a href="#scenic">核心景点</a></li>
+                        <li><a href="#culture">民俗文化</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fa fa-map-marker"></i> 成都市青白江区城厢镇西街</li>
+                        <li><i class="fa fa-phone"></i> 028-12345678</li>
+                        <li><i class="fa fa-envelope"></i> info@chengxiang-west-street.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 大弯中学信息技术项目式小组. 保留所有权利.</p>
+                <p>luoxi7840@outlook.com</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

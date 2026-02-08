@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城厢绣川书院 - 千年文脉，蜀学之光</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - 马善政字体（古朴风格） -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <!-- 中文字体 - 思源宋体（Noto Serif SC） -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+   
+    <style>
+        /* 全局样式重置与基础设置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "PingFang SC", "Noto Serif SC", "SimSun", "宋体", "Microsoft YaHei", sans-serif;
+            color: #2d281f;
+            line-height: 1.8;
+            padding: 20px;
+            background-color: #f9f6f0;
+            background-image: linear-gradient(rgba(249, 246, 240, 0.95), rgba(249, 246, 240, 0.95)), 
+                              url(https://free.picui.cn/free/2026/02/06/69860645b3207.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo h1 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            font-weight: normal;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .navbar-menu li a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-menu li a:hover {
+            color: #ffffff;
+        }
+
+        .navbar-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-menu li a:hover::after {
+            width: 100%;
+        }
+
+        /* 移动端菜单按钮 */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .navbar-menu li {
+                width: 100%;
+            }
+
+            .navbar-menu li a {
+                display: block;
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar-container {
+                padding: 0 15px;
+            }
+
+            .navbar-logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .header {
+                padding: 100px 0 20px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+        }
+
+        /* 页面头部样式 */
+        .header {
+            text-align: center;
+            padding: 120px 0 30px;
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #614b28;
+            margin-bottom: 15px;
+            font-weight: normal;
+            letter-spacing: 3px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #7a6543;
+            letter-spacing: 2px;
+        }
+
+        /* 主体容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 书院图片展示 */
+        .academy-img-box {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .academy-img {
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            border: 10px solid rgba(255, 255, 255, 0.95);
+        }
+
+        /* 书院介绍区域 */
+        .academy-intro {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 45px 60px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .academy-intro h2 {
+            font-size: 2rem;
+            color: #614b28;
+            margin-bottom: 30px;
+            padding-left: 15px;
+            border-left: 5px solid #8c7853;
+        }
+
+        .academy-intro p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            text-indent: 2em;
+            color: #333;
+        }
+
+        /* 超链接样式（古韵风格） */
+        .link-group {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .ancient-link {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #7a6543;
+            padding: 15px 30px;
+            border: 1px solid #614b28;
+            border-radius: 6px;
+            margin: 10px 8px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .ancient-link:hover {
+            background-color: #614b28;
+            border-color: #4d3b1f;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 子页面锚点内容样式 */
+        #history, #architecture, #culture, #visit {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 50px;
+            border-radius: 8px;
+            margin: 60px 0 !important;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        #history h3, #architecture h3, #culture h3, #visit h3 {
+            font-size: 1.8rem;
+            color: #614b28;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0d8c8;
+        }
+
+        #history p, #architecture p, #culture p, #visit p {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* 底部样式 */
+        .footer {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+        .footer-contact {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-contact li i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            .academy-intro {
+                padding: 25px 30px;
+            }
+            .academy-img {
+                border-width: 6px;
+            }
+            .ancient-link {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            #history, #architecture, #culture, #visit {
+                padding: 25px 30px;
+            }
+            
+            /* 底部响应式调整 */
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+            
+            .footer {
+                padding: 30px 0;
+            }
+            
+            .footer-container {
+                padding: 0 15px;
+            }
+            
+            .footer-column h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+    <script>
+        // 移动端菜单交互
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navbarMenu = document.querySelector('.navbar-menu');
+
+            menuToggle.addEventListener('click', function() {
+                navbarMenu.classList.toggle('active');
+            });
+
+            // 点击菜单项后关闭菜单
+            const menuItems = document.querySelectorAll('.navbar-menu li a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navbarMenu.classList.remove('active');
+                });
+            });
+
+            // 滚动时导航栏样式变化
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                } else {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <h1>绣川书院</h1>
+            </div>
+            <nav>
+                <ul class="navbar-menu">
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="#history">历史沿革</a></li>
+                    <li><a href="#architecture">建筑格局</a></li>
+                    <li><a href="#culture">文化传承</a></li>
+                    <li><a href="#visit">参观指南</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <!-- 页面头部 -->
+    <div class="header">
+        <div class="header-content">
+            <h1>绣川书院</h1>
+            <p>城厢文脉之核，蜀中书院之珍</p>
+        </div>
+    </div>
+
+    <!-- 主体内容容器 -->
+    <div class="container">
+        <!-- 绣川书院实景图片 -->
+        <div class="academy-img-box">
+            <img src="https://free.picui.cn/free/2026/02/06/69860645b3207.jpg" 
+                 alt="绣川书院正门实景" 
+                 class="academy-img">
+        </div>
+
+        <!-- 绣川书院核心介绍 -->
+        <div class="academy-intro">
+            <h2>千年绣川，墨香如故</h2>
+            <p>绣川书院坐落于成都青白江城厢镇，始建于宋代，盛于明清，是四川历史最为悠久的官办书院之一，素有“川西第一书院”的美誉。书院历经数百年风雨，始终是蜀地文脉传承的重要阵地，培育了无数文人墨客，见证了城厢乃至川西地区的文教发展历程。</p>
+            <p>如今的绣川书院保留了清代重建后的建筑格局，青瓦木梁、雕窗回廊，处处彰显着中式传统建筑的雅致与厚重。院内古木参天，墨香萦绕，既是研究川西书院文化的重要实物遗存，也是今人感受古代书院教育、触摸历史文脉的珍贵场所。</p>
+            <p>作为城厢历史文化名镇的核心地标，绣川书院与城厢西街、武庙等古迹相映成辉，共同勾勒出这座千年古镇的文化底色。</p>
+
+            <!-- 核心超链接组 -->
+            <div class="link-group">
+                <a href="#history" class="ancient-link">书院千年历史沿革</a>
+                <a href="#architecture" class="ancient-link">建筑格局与特色</a>
+                <a href="#culture" class="ancient-link">书院文化与传承</a>
+                <a href="#visit" class="ancient-link">参观指南与贴士</a>
+                <a href="https://www.qingbaijiang.gov.cn/" target="_blank" class="ancient-link">青白江文旅官方</a>
+            </div>
+        </div>
+
+        <!-- 锚点1：书院历史沿革 -->
+        <div id="history">
+            <h3>书院千年历史沿革</h3>
+            <p>绣川书院的历史可追溯至北宋嘉祐二年（1057年），最初为当地士绅兴办的私学，后于明代改为官办书院，定名“绣川”。明清两代，书院历经多次修缮与扩建，规模逐渐扩大，成为川西地区教化一方的重要学府。</p>
+            <p>清代康熙年间，书院进行了大规模重建，形成了“三进两院”的建筑格局，兼具讲学、祭祀、藏书等功能。晚清时期，西学东渐，书院顺应时代潮流，增设新学课程，完成了从传统书院向近代学堂的转型，为地方培养了适应时代发展的人才。</p>
+            <p>新中国成立后，绣川书院曾作为学校、办公场所使用，21世纪以来，当地政府对书院进行了系统性修缮，恢复了其历史风貌，并作为文化场馆向公众开放，让千年书院重焕生机。</p>
+        </div>
+
+        <!-- 锚点2：建筑格局与特色 -->
+        <div id="architecture">
+            <h3>建筑格局与特色</h3>
+            <p>绣川书院整体遵循中国传统书院的建筑规制，坐北朝南，呈中轴对称布局，由大门、仪门、讲堂、大成殿、藏书楼等建筑构成完整的空间序列，总占地面积约5000平方米。</p>
+            <p>书院建筑以川西民居风格为基底，融合了官式建筑的规整与雅致：穿斗式木结构、小青瓦屋面、雕花雀替、镂空窗棂，既体现了川西建筑的实用与精巧，又彰显了书院作为文教场所的庄重与典雅。</p>
+            <p>院内的“讲堂”是核心建筑，为抬梁式结构，空间开阔，曾是讲学论道的核心区域；大成殿供奉至圣先师孔子，是书院祭祀活动的重要场所；藏书楼虽经重建，仍保留了传统藏书建筑的通风、防潮设计，见证了古代书院的藏书文化。</p>
+        </div>
+
+        <!-- 锚点3：书院文化与传承 -->
+        <div id="culture">
+            <h3>书院文化与传承</h3>
+            <p>绣川书院自建立以来，始终以“立德树人、崇文尚礼”为核心，形成了独具特色的书院文化。明清时期，书院聘请名儒讲学，倡导“经世致用”的治学理念，培养的学子中不乏进士、举人，成为地方文教的标杆。</p>
+            <p>如今，绣川书院不仅是文物保护单位，更是青白江区重要的文化传承基地：定期举办国学讲堂、书法展览、非遗体验等活动，让传统书院文化融入现代生活；同时，书院也是研学旅行的热门目的地，青少年可在此体验古代书院的教学模式，感受中华优秀传统文化的魅力。</p>
+            <p>“绣川书院文化”已成为城厢镇历史文化保护与传承的重要品牌，与城厢古镇的整体开发相结合，实现了文化遗产的活态传承。</p>
+        </div>
+
+        <!-- 锚点4：参观指南与贴士 -->
+        <div id="visit">
+            <h3>参观指南与贴士</h3>
+            <p>📍 地址：成都市青白江区城厢镇大东街125号（城厢古镇核心区）</p>
+            <p>⏰ 开放时间：每日9:00-17:00（16:30停止入场，每周一闭馆维护）</p>
+            <p>🎫 门票：免费对外开放（部分研学体验项目需提前预约）</p>
+            <p>🚗 交通：可乘坐成都地铁3号线至成都医学院站，换乘Q22路公交至城厢镇；自驾可导航“绣川书院”，古镇内有专属停车场。</p>
+            <p>💡 贴士：建议搭配城厢西街、武庙、家珍公园等景点一同游览，完整感受城厢古镇的历史底蕴；书院内有专业讲解员，可提前预约讲解服务。</p>
+        </div>
+    </div>
+
+    <!-- 页面底部 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>绣川书院</h3>
+                    <p>千年书院，蜀地文脉传承的重要阵地，素有“川西第一书院”的美誉。历经数百年风雨，始终是城厢乃至川西地区的文教发展的重要见证。</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fa fa-weixin"></i></a>
+                        <a href="#"><i class="fa fa-weibo"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">首页</a></li>
+                        <li><a href="#history">历史沿革</a></li>
+                        <li><a href="#architecture">建筑格局</a></li>
+                        <li><a href="#culture">文化传承</a></li>
+                        <li><a href="#visit">参观指南</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fa fa-map-marker"></i> 成都市青白江区城厢镇大东街125号</li>
+                        <li><i class="fa fa-phone"></i> 028-12345678</li>
+                        <li><i class="fa fa-envelope"></i> info@xiuchuan-academy.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 大弯中学信息技术项目式小组. 保留所有权利.</p>
+                <p>luoxi7840@outlook.com</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

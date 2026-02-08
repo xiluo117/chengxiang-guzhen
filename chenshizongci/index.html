@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青白江陈氏宗祠 - 客家文化的瑰宝</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - 马善政字体（古朴风格） -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <!-- 中文字体 - 思源宋体（Noto Serif SC） -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* 全局样式重置与基础设置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "PingFang SC", "Noto Serif SC", "SimSun", "宋体", "Microsoft YaHei", sans-serif;
+            color: #2d281f;
+            line-height: 1.8;
+            padding: 20px;
+            background-color: #f9f6f0;
+            background-image: linear-gradient(rgba(249, 246, 240, 0.95), rgba(249, 246, 240, 0.95)), 
+                              url(https://p3-doubao-search-sign.byteimg.com/labis/c9001f3a0b9cccb2973a8f35bc3c56da~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769701&x-signature=9aD8l36zuh7yYXTCZRt7uKhRsEA%3D);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo h1 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            font-weight: normal;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .navbar-menu li a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-menu li a:hover {
+            color: #ffffff;
+        }
+
+        .navbar-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-menu li a:hover::after {
+            width: 100%;
+        }
+
+        /* 移动端菜单按钮 */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 页面头部样式 */
+        .header {
+            text-align: center;
+            padding: 120px 0 30px;
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #614b28;
+            margin-bottom: 15px;
+            font-weight: normal;
+            letter-spacing: 3px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #7a6543;
+            letter-spacing: 2px;
+        }
+
+        /* 主体容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 宗祠图片展示 */
+        .ancestral-hall-img-box {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .ancestral-hall-img {
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            border: 10px solid rgba(255, 255, 255, 0.95);
+        }
+
+        /* 宗祠介绍区域 */
+        .ancestral-hall-intro {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 45px 60px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .ancestral-hall-intro h2 {
+            font-size: 2rem;
+            color: #614b28;
+            margin-bottom: 30px;
+            padding-left: 15px;
+            border-left: 5px solid #8c7853;
+        }
+
+        .ancestral-hall-intro p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            text-indent: 2em;
+            color: #333;
+        }
+
+        /* 超链接样式（古韵风格） */
+        .link-group {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .ancient-link {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #7a6543;
+            padding: 15px 30px;
+            border: 1px solid #614b28;
+            border-radius: 6px;
+            margin: 10px 8px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .ancient-link:hover {
+            background-color: #614b28;
+            border-color: #4d3b1f;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 子页面锚点内容样式 */
+        #history, #architecture, #art, #protection {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 50px;
+            border-radius: 8px;
+            margin: 60px 0 !important;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        #history h3, #architecture h3, #art h3, #protection h3 {
+            font-size: 1.8rem;
+            color: #614b28;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0d8c8;
+        }
+
+        #history p, #architecture p, #art p, #protection p {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* 底部样式 */
+        .footer {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+        .footer-contact {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-contact li i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            .ancestral-hall-intro {
+                padding: 25px 30px;
+            }
+            .ancestral-hall-img {
+                border-width: 6px;
+            }
+            .ancient-link {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            #history, #architecture, #art, #protection {
+                padding: 25px 30px;
+            }
+            
+            /* 导航栏响应式调整 */
+            .navbar-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .navbar-menu li {
+                width: 100%;
+            }
+
+            .navbar-menu li a {
+                display: block;
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar-container {
+                padding: 0 15px;
+            }
+
+            .navbar-logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .header {
+                padding: 100px 0 20px;
+            }
+            
+            /* 底部响应式调整 */
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+            
+            .footer {
+                padding: 30px 0;
+            }
+            
+            .footer-container {
+                padding: 0 15px;
+            }
+            
+            .footer-column h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+    <script>
+        // 移动端菜单交互
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navbarMenu = document.querySelector('.navbar-menu');
+
+            menuToggle.addEventListener('click', function() {
+                navbarMenu.classList.toggle('active');
+            });
+
+            // 点击菜单项后关闭菜单
+            const menuItems = document.querySelectorAll('.navbar-menu li a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navbarMenu.classList.remove('active');
+                });
+            });
+
+            // 滚动时导航栏样式变化
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                } else {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <h1>陈氏宗祠</h1>
+            </div>
+            <nav>
+                <ul class="navbar-menu">
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="#history">历史沿革</a></li>
+                    <li><a href="#architecture">建筑格局</a></li>
+                    <li><a href="#art">装饰艺术</a></li>
+                    <li><a href="#protection">文物保护</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <!-- 页面头部 -->
+    <div class="header">
+        <div class="header-content">
+            <h1>陈氏宗祠</h1>
+            <p>客家文化的瑰宝，湖广填四川的历史见证</p>
+        </div>
+    </div>
+
+    <!-- 主体内容容器 -->
+    <div class="container">
+        <!-- 陈氏宗祠实景图片 -->
+        <div class="ancestral-hall-img-box">
+            <img src="https://p3-doubao-search-sign.byteimg.com/labis/c9001f3a0b9cccb2973a8f35bc3c56da~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785769701&x-signature=9aD8l36zuh7yYXTCZRt7uKhRsEA%3D" 
+                 alt="陈氏宗祠" 
+                 class="ancestral-hall-img">
+        </div>
+
+        <!-- 陈氏宗祠核心介绍 -->
+        <div class="ancestral-hall-intro">
+            <h2>客家文化瑰宝，历史文物明珠</h2>
+            <p>陈氏宗祠位于四川省成都市青白江区城厢镇西街135号，始建于清乾隆六年（1741年），系湖广填四川时期福建南靖陈氏族人迁蜀后所建。该建筑为清代客家风格，现存右院三进式格局，门梁镏金雕花、风火墙泥塑等装饰保存完好，是成都地区现存规模最大、保存最完整的清代宗族祠堂。</p>
+            <p>2007年，陈氏宗祠被四川省人民政府公布为省级文物保护单位，具有重要的建筑艺术与宗族文化研究价值。作为湖广填四川移民史的重要见证，陈氏宗祠不仅是一座历史建筑，更是客家文化在四川传承发展的实物载体。</p>
+            <p>如今的陈氏宗祠经过修复，已成为城厢古镇的重要文化景点，吸引着众多游客前来参观，感受客家文化的独特魅力和湖广填四川的历史沧桑。</p>
+
+            <!-- 核心超链接组 -->
+            <div class="link-group">
+                <a href="#history" class="ancient-link">历史沿革</a>
+                <a href="#architecture" class="ancient-link">建筑格局</a>
+                <a href="#art" class="ancient-link">装饰艺术</a>
+                <a href="#protection" class="ancient-link">文物保护</a>
+            </div>
+        </div>
+
+        <!-- 锚点1：历史沿革 -->
+        <div id="history">
+            <h3>历史沿革</h3>
+            <p>陈氏宗祠原名旭高祠，由福建南靖陈氏移民于清乾隆六年（1741年）建造，见证了湖广填四川的移民历史。当时，大量福建、广东、江西等地的居民迁往四川，形成了独特的客家文化。</p>
+            <p>1950年代，陈氏宗祠曾作为中药材仓库使用，这一时期虽然改变了其原始功能，但也在一定程度上保护了建筑本体。2005年，陈氏后人陈贵全购回宗祠并主持修复工作，使其逐渐恢复了昔日的风貌。</p>
+            <p>2006年，宗祠更名为陈氏宗祠并正式对外开放，向公众展示客家文化和宗族历史。2007年6月，经四川省人民政府批准，陈氏宗祠被列为第七批省级文物保护单位，进一步提升了其历史文化价值。</p>
+        </div>
+
+        <!-- 锚点2：建筑格局 -->
+        <div id="architecture">
+            <h3>建筑格局</h3>
+            <p>陈氏宗祠呈长方形平面布局，面阔45米、进深60米，现存右院三进式格局（二堂二厅三天井），采用穿斗式与抬梁式混合木构架，体现了清代客家建筑的典型特征。</p>
+            <p>建筑整体坐北朝南，布局严谨，中轴对称。小青瓦屋面与风火墙形成典型的川西客家建筑特色，既美观大方，又具有良好的防火功能。门楼高达7米，厚重的木门保留了原有的铁饰构件，彰显着宗祠的庄严与肃穆。</p>
+            <p>三进式格局中，前院通常用于举行大型活动，中厅为祭祀和聚会的主要场所，后院则供奉祖先牌位。这种布局体现了中国传统宗族建筑的功能划分，也反映了客家人重视宗族团结的文化传统。</p>
+        </div>
+
+        <!-- 锚点3：装饰艺术 -->
+        <div id="art">
+            <h3>装饰艺术</h3>
+            <p>陈氏宗祠的装饰艺术堪称精湛，尤其是梁架上保留的完整镏金雕花，令人叹为观止。这些雕花涵盖了人物、花草、动物三类主题，其中"教子"、"审案"、"戏文"等传统题材雕刻尤为精美，展现了当时工匠的高超技艺。</p>
+            <p>门梁雕刻细致入微，人物形象栩栩如生，场景生动有趣，不仅具有艺术价值，也反映了当时的社会生活和道德观念。天井铺装采用清代青石条，整齐划一，体现了传统建筑的严谨工艺。</p>
+            <p>檐口瓦当保留了福寿纹样，寓意吉祥如意，体现了客家人对美好生活的向往。风火墙泥塑造型精美，线条流畅，是川西传统建筑装饰的重要组成部分。</p>
+        </div>
+
+        <!-- 锚点4：文物保护 -->
+        <div id="protection">
+            <h3>文物保护</h3>
+            <p>截至2024年，陈氏宗祠保存状态良好，仍维持2005年修复后的完整格局。作为省级文物保护单位，其保护范围涵盖建筑本体及周边30米区域，禁止进行与文物保护无关的建设活动。</p>
+            <p>近年来，在地方政府的支持下，陈氏宗祠开展了一系列保护工程，包括建筑彩绘保护、木构件防虫处理等专项维护工作，确保了古建筑的安全与完整。</p>
+            <p>为了更好地传承和弘扬客家文化，陈氏宗祠还定期举办客家文化展览、宗族文化讲座等活动，吸引更多人了解和关注这一珍贵的历史文化遗产。同时，宗祠也加强了与学术界的合作，开展相关历史文化研究，为客家文化的保护和传承做出了积极贡献。</p>
+        </div>
+    </div>
+
+    <!-- 页面底部 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>陈氏宗祠</h3>
+                    <p>陈氏宗祠位于四川省成都市青白江区城厢镇西街135号，始建于清乾隆六年（1741年），系湖广填四川时期福建南靖陈氏族人迁蜀后所建。是成都地区现存规模最大、保存最完整的清代宗族祠堂，2007年被列为省级文物保护单位。</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fa fa-weixin"></i></a>
+                        <a href="#"><i class="fa fa-weibo"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#history">历史沿革</a></li>
+                        <li><a href="#architecture">建筑格局</a></li>
+                        <li><a href="#art">装饰艺术</a></li>
+                        <li><a href="#protection">文物保护</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fa fa-map-marker"></i> 成都市青白江区城厢镇西街135号</li>
+                        <li><i class="fa fa-phone"></i> 028-12345678</li>
+                        <li><i class="fa fa-envelope"></i> info@chenclanhall.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 大弯中学信息技术项目式小组. 保留所有权利.</p>
+                <p>luoxi7840@outlook.com</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
